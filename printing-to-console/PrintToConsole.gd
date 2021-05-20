@@ -1,4 +1,4 @@
-extends Sprite
+class_name PrintToConsole extends Node
 
 
 # Declare member variables here. Examples:
@@ -17,7 +17,7 @@ func demo_console_prints():
 	var b: int = 30;
 	print_debug(a) 			# 20 At: res://icon.gd:13:_ready()
 	print(a) 				# 20
-	print_tree_pretty()  	# ┖╴icon
+	print_tree_pretty()  	# ┖╴PrintToConsole
 	print_stack() 			# Frame 0 - res://icon.gd:16 in function '_ready'
 	print_stray_nodes() 	#
 	printerr(a) 			#  20 (in red color)

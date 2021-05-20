@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://player/RunState.gd" type="Script" id=1]
+[ext_resource path="res://player/Player.gd" type="Script" id=2]
+[ext_resource path="res://player/IdleState.gd" type="Script" id=3]
+[ext_resource path="res://state-machine/StateMachine.gd" type="Script" id=4]
+[ext_resource path="res://player/AirState.gd" type="Script" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 35, 96 )
+script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -29.6345, -26.4911, -25.1345, -30.4911, 24.8655, -29.9911, 29.3655, -25.4911, 29.8655, 24.5089, 25.8655, 29.5089, -24.6345, 30.0089, -30.1345, 25.0089 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Texture" type="Sprite" parent="."]
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LookDirection" type="Position2D" parent="."]
+position = Vector2( 89, -4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="XAxis" type="Line2D" parent="LookDirection"]
+points = PoolVector2Array( -16, 0, 18, 0 )
+width = 1.0
+default_color = Color( 1, 0.298039, 0.298039, 1 )
+
+[node name="YAxis" type="Line2D" parent="LookDirection"]
+rotation = -1.57079
+points = PoolVector2Array( -16, 0, 18, 0 )
+width = 1.0
+default_color = Color( 1, 0.307985, 0.307985, 1 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 4 )
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )
+
+[node name="Air" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource( 1 )
