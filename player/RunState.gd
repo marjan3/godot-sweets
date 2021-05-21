@@ -7,8 +7,7 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Air")
 		return
 	
-	var input_dir_x : float = Input.get_action_strength("ui_right")
-	- Input.get_action_strength("ui_left")
+	var input_dir_x : float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	
 	player.velocity.x = player.speed * input_dir_x
 	player.velocity.y += player.gravity * delta
